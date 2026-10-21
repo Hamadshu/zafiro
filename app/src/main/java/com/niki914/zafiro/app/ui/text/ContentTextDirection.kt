@@ -5,16 +5,18 @@ import androidx.compose.ui.text.style.TextDirection
 
 private val FencedCodeBlock = Regex("(?s)```.*?```")
 private val InlineCodeSpan = Regex("`[^`]*`")
+private val UrlPattern = Regex("https?://\\S+")
 
 internal fun resolveContentTextDirection(
     text: String,
     ignoreCode: Boolean = false,
 ): TextDirection {
-    val content = if (ignoreCode) {
+    val withoutCode = if (ignoreCode) {
         InlineCodeSpan.replace(FencedCodeBlock.replace(text, " "), " ")
     } else {
         text
     }
+    val content = UrlPattern.replace(withoutCode, " ")
 
     var arabic = 0
     var latin = 0
