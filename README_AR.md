@@ -147,9 +147,13 @@
 
 ### البناء من المصدر
 
+<div dir="ltr">
+
 ```bash
 ./gradlew assembleDebug
 ```
+
+</div>
 
 ### المتطلبات
 
@@ -160,6 +164,8 @@
 <summary>توقيع إصدار Release</summary>
 
 لبناء نسخة Release بنفسك، استخدم مفتاح التوقيع الخاص بك:
+
+<div dir="ltr">
 
 ```bash
 keytool -genkeypair -v -keystore my-release.jks \
@@ -172,9 +178,13 @@ keytool -genkeypair -v -keystore my-release.jks \
   -PRELEASE_KEY_PASSWORD=yourKeyPassword
 ```
 
+</div>
+
 </details>
 
 ## هيكل المشروع
+
+<div dir="ltr">
 
 ```
 ./
@@ -198,6 +208,8 @@ keytool -genkeypair -v -keystore my-release.jks \
     ├── okia/            # مكتبة أساس Okia Agent runtime
     └── libterm/         # مكتبة الطرفية (عدة خلفيات: libsu وshizuku وssh وغيرها)
 ```
+
+</div>
 
 ## خارطة الطريق
 
