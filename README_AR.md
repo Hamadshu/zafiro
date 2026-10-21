@@ -43,7 +43,7 @@ Zafiro هو Agent ذكي مفتوح المصدر يعمل على أجهزة Andr
   <tr>
     <td width="25%" align="center"><img src="https://github.com/niki914/zafiro/blob/main/res/demos/zafiro__multi_providers.jpg?raw=true" alt="مفاتيح API مخصّصة للنماذج وإعداد عدة مزوّدين" width="90%" /></td>
     <td width="25%" align="center"><img src="https://github.com/niki914/zafiro/blob/main/res/demos/zafiro__remote_machine_ssh.jpg?raw=true" alt="دمج أجهزة التطوير البعيدة عبر SSH وTermux" width="90%" /></td>
-    <td width="25%" align="center"><img src="https://github.com/niki914/zafiro/blob/main/res/demos/zafiro__safety_guard.jpg?raw=true" alt="حماية أذونات بشرية في الحلقة واعتراض آمن لعمليات Shell الحساسة" width="90%" /></td>
+    <td width="25%" align="center"><img src="https://github.com/niki914/zafiro/blob/main/res/demos/zafiro__safety_guard.jpg?raw=true" alt="حماية بشرية ضمن حلقة الموافقة واعتراض آمن لعمليات Shell الحساسة" width="90%" /></td>
     <td width="25%" align="center"><img src="https://github.com/niki914/zafiro/blob/main/res/demos/zafiro__conversation_management.jpg?raw=true" alt="إدارة سجل المحادثات محليًا وتفرّع الجلسات" width="90%" /></td>
   </tr>
 </table>

@@ -73,7 +73,7 @@
     <string name="ui_toast_empty_input">يُرجى إدخال رسالة</string>
     <string name="ui_home_error_retry_body">يُرجى المحاولة لاحقًا.</string>
     <string name="ui_home_error_config_required_title">إعدادات النموذج غير مكتملة</string>
-    <string name="ui_home_error_config_required_body">يرجى تعبئة إعدادات النموذج.</string>
+    <string name="ui_home_error_config_required_body">يُرجى تعبئة إعدادات النموذج.</string>
     <string name="ui_home_error_network_title">خطأ في الشبكة</string>
     <string name="ui_home_error_idle_timeout_title">انتهت مهلة الاستجابة</string>
     <string name="ui_home_error_output_truncated_title">تم قطع المخرجات</string>
@@ -257,7 +257,7 @@
     <string name="tool_permission_allow">السماح مرة واحدة</string>
     <string name="tool_permission_deny">رفض</string>
     <string name="screen_control_consent_title">طلب إذن التحكم بالشاشة</string>
-    <string name="screen_control_consent_body">يحتاج Zafiro إلى هذه الأذونات للتحكم بالشاشة:\n1. خدمة إمكانية الوصول: قراءة الواجهة وتنفيذ اللمسات\n2. العرض فوق التطبيقات الأخرى: إظهار مؤشر المؤشر\n\nقد يظهر طلب نظام أو صفحة إعدادات بعد ذلك.</string>
+    <string name="screen_control_consent_body">يحتاج Zafiro إلى هذه الأذونات للتحكم بالشاشة:\n1. خدمة إمكانية الوصول: قراءة الواجهة وتنفيذ اللمسات\n2. العرض فوق التطبيقات الأخرى: إظهار مؤشر الشاشة\n\nقد يظهر طلب نظام أو صفحة إعدادات بعد ذلك.</string>
     <string name="screen_control_consent_agree">موافق</string>
     <string name="screen_control_consent_deny">رفض</string>
     <string name="execution_rules_field_patterns">الأنماط</string>
@@ -434,7 +434,7 @@
     <string name="ui_settings_general">الإعدادات العامة</string>
     <string name="ui_settings_general_summary">سلوك البدء والتشغيل</string>
     <string name="ui_settings_general_group_appearance">المظهر واللغة</string>
-    <string name="ui_settings_general_group_floating_notification">العنصر العائم والإشعارات</string>
+    <string name="ui_settings_general_group_floating_notification">الكرة العائمة والإشعارات</string>
     <string name="ui_settings_general_group_conversation">المحادثة والتفاعل</string>
     <string name="ui_settings_general_floating_ball">الكرة العائمة</string>
     <string name="ui_settings_general_floating_ball_summary">إظهار حالة agent والإجراءات السريعة في الخلفية</string>
