@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 <div align="right">
 
 **[English](README.md)** | [中文](README_CN.md) | العربية
@@ -19,11 +21,11 @@
 
 ## ما هو Zafiro؟
 
-Zafiro هو Agent ذكي مفتوح المصدر يعمل على أجهزة Android، ويدعم [BYOK](https://www.ibm.com/think/topics/byok). يفهم شاشتك، ويتحكم بجهازك، وينفّذ عمليات عبر التطبيقات — مع دعم كامل لـ Skills وMCP والذاكرة. يمكنه أيضًا تشغيل Shell وPython 3 أصليًا وتغليف الأدوات بنفسه لإنجاز مهام مثل البحث على الويب وتنزيل الملفات، أو الاتصال بجهاز تطوير بعيد عبر SSH.
+إن **Zafiro** Agent ذكي مفتوح المصدر يعمل على أجهزة Android، ويدعم [BYOK](https://www.ibm.com/think/topics/byok). يفهم شاشتك، ويتحكم بجهازك، وينفّذ عمليات عبر التطبيقات — مع دعم كامل لـ Skills وMCP والذاكرة. يمكنه أيضًا تشغيل Shell وPython 3 أصليًا وتغليف الأدوات بنفسه لإنجاز مهام مثل البحث على الويب وتنزيل الملفات، أو الاتصال بجهاز تطوير بعيد عبر SSH.
 
 <table align="center" width="100%">
   <tr>
-    <th width="25%" align="center">Phone-Use</th>
+    <th width="25%" align="center">استخدام الهاتف</th>
     <th width="25%" align="center">توليد صفحات الويب</th>
     <th width="25%" align="center">وكلاء خارجيون</th>
     <th width="25%" align="center">متعدد الوسائط</th>
@@ -57,7 +59,7 @@ Zafiro هو Agent ذكي مفتوح المصدر يعمل على أجهزة Andr
 
 ### لغة تصميم واجهة عصرية
 
-- **[Material 3 Expressive](https://m3.material.io/) وApple Liquid Glass** - واجهة عصرية ومتقنة
+- واجهة عصرية ومتقنة عبر **[Material 3 Expressive](https://m3.material.io/)** و**Apple Liquid Glass**
 - **سمات مخصّصة** - ألوان سمات متعددة مع الوضع الداكن واستخراج الألوان الديناميكي
 - **دعم متعدد اللغات** - English، 中文، 日本語، Español، Русский، العربية
 - **تفاعل في الخلفية** - كرة عائمة أنيقة وواجهة في درج الإشعارات لمتابعة Agent والتفاعل معه لحظيًا
@@ -83,14 +85,14 @@ Zafiro هو Agent ذكي مفتوح المصدر يعمل على أجهزة Andr
 
 ### بيئات بعيدة
 
-- **[Termux](https://github.com/termux/termux-app)** - استخدم أوامر وأدوات Linux على جهاز Android
-- **SSH** - اتصل بجهاز تطوير أو خادم لتنفيذ مهام بعيدة
-- **[Claude Code](https://github.com/anthropics/claude-code)** - أطلق مهام تطوير من هاتفك ونفّذها Coding Agent بعيد
+- استخدم [Termux](https://github.com/termux/termux-app) لتشغيل أوامر وأدوات Linux على جهاز Android
+- اتصل بجهاز تطوير أو خادم عبر **SSH** لتنفيذ مهام بعيدة
+- أطلق مهام تطوير من هاتفك عبر **[Claude Code](https://github.com/anthropics/claude-code)** لتنفيذها بواسطة Coding Agent بعيد
 
 ## المجتمع
 
-- [Telegram](https://t.me/+ZPX2xtSl6RwyZGNl) — للنقاش وطرح الأسئلة وتقديم الملاحظات
-- [GitHub Issues](https://github.com/niki914/zafiro/issues) — للإبلاغ عن الأخطاء أو طلب الميزات
+- للنقاش وطرح الأسئلة وتقديم الملاحظات: [Telegram](https://t.me/+ZPX2xtSl6RwyZGNl)
+- للإبلاغ عن الأخطاء أو طلب الميزات: [GitHub Issues](https://github.com/niki914/zafiro/issues)
 
 عند الإبلاغ عن مشكلة، يُرجى تقديم أكبر قدر ممكن من التفاصيل: طراز الهاتف وإصدار Android، والمساعد الصوتي في النظام وإصداره، وإصدار Zafiro، وخطوات إعادة الإنتاج، ولقطات شاشة أو تسجيلات.
 
@@ -98,8 +100,8 @@ Zafiro هو Agent ذكي مفتوح المصدر يعمل على أجهزة Andr
 
 نرحّب بالرعاية عبر القنوات التالية:
 
-- [Afdian](https://afdian.com/a/niki914)
-- [![Tip in Crypto](https://tip.md/badge.svg)](https://tip.md/niki914) - 0x5f1469519c87edf2245ea04fbb54284c9b76ad3d
+- عبر [Afdian](https://afdian.com/a/niki914)
+- عبر العملات الرقمية: [![Tip in Crypto](https://tip.md/badge.svg)](https://tip.md/niki914) - 0x5f1469519c87edf2245ea04fbb54284c9b76ad3d
 
 ## الاستحواذ على المساعد الصوتي
 
@@ -134,8 +136,8 @@ Zafiro هو Agent ذكي مفتوح المصدر يعمل على أجهزة Andr
 | إطار الواجهة       | [Jetpack Compose](https://developer.android.com/jetpack/compose)       |
 | لغة التصميم        | [Material Design 3 Expressive](https://m3.material.io/)                |
 | الزجاج السائل      | [Android Liquid Glass](https://github.com/Kyant0/AndroidLiquidGlass)   |
-| Agent Runtime     | [Okia](https://github.com/niki914/okia)                                |
-| Python Runtime    | [Chaquopy](https://chaquo.com/chaquopy/)                               |
+| وقت تشغيل Agent    | [Okia](https://github.com/niki914/okia)                                |
+| وقت تشغيل Python   | [Chaquopy](https://chaquo.com/chaquopy/)                               |
 | استحواذ النظام      | [LSPosed](https://github.com/lsposed/lsposed) + Xposed API             |
 | الطرفية / SSH      | [libterm](https://github.com/niki914/libterm)                          |
 | عرض SVG           | [coil-resvg](https://github.com/hash-sequence/coil-resvg) (resvg)      |
@@ -151,7 +153,7 @@ Zafiro هو Agent ذكي مفتوح المصدر يعمل على أجهزة Andr
 
 ### المتطلبات
 
-- Android Studio (أو Android SDK + JDK 17)
+- يتطلب Android Studio (أو Android SDK + JDK 17)
 - جهاز يعمل بنظام Android 11 أو أحدث
 
 <details>
@@ -164,10 +166,10 @@ keytool -genkeypair -v -keystore my-release.jks \
   -keyalg RSA -keysize 2048 -validity 10000 -alias my_key
 
 ./gradlew assembleRelease \
-  -PRELEASE_STORE_FILE=/المسار/الكامل/my-release.jks \
-  -PRELEASE_STORE_PASSWORD=كلمة_مرور_المخزن \
+  -PRELEASE_STORE_FILE=/absolute/path/to/my-release.jks \
+  -PRELEASE_STORE_PASSWORD=yourStorePassword \
   -PRELEASE_KEY_ALIAS=my_key \
-  -PRELEASE_KEY_PASSWORD=كلمة_مرور_المفتاح
+  -PRELEASE_KEY_PASSWORD=yourKeyPassword
 ```
 
 </details>
@@ -201,7 +203,7 @@ keytool -genkeypair -v -keystore my-release.jks \
 
 - تكامل المساعد الصوتي في النظام (بدون استحواذ Xposed)
 - استيراد / مشاركة الملفات من خارج التطبيق
-- Skills مدمجة مثل Termux، وتلميحات `/skill`، واستيراد Skills من السحابة
+- إضافة Skills مدمجة مثل Termux، وتلميحات `/skill`، واستيراد Skills من السحابة
 
 ## المساهمة
 
@@ -221,8 +223,10 @@ keytool -genkeypair -v -keystore my-release.jks \
 
 ## الترخيص
 
-MIT — راجع [LICENSE](LICENSE).
+الترخيص MIT — راجع [LICENSE](LICENSE).
 
 <p align="center">
   صُنع بـ ✨️ بواسطة <a href="https://github.com/niki914">niki914</a>
 </p>
+
+</div>
