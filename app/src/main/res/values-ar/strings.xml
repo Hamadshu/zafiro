@@ -504,6 +504,11 @@
     <string name="ui_settings_configure_context_window_placeholder">مثال: 1000000 أو 1M</string>
     <string name="ui_settings_configure_error_context_window_invalid">أدخل رقمًا صالحًا لا يقل عن 1000، مع دعم k/m/b</string>
 
+    <string name="ui_settings_theme_style_title">النمط</string>
+    <string name="ui_theme_style_liquid">Glass</string>
+    <string name="ui_theme_style_md3">MD3</string>
+    <string name="ui_theme_style_md3e">MD3E</string>
+
     <string name="ui_theme_mode_system">اتّباع النظام</string>
     <string name="ui_theme_mode_light">فاتح</string>
     <string name="ui_theme_mode_dark">داكن</string>
