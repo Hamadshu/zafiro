@@ -8,8 +8,9 @@ import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.awaitTouchSlopOrCancellation
 import androidx.compose.foundation.gestures.drag
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.absoluteOffset
+import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -23,7 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
@@ -34,9 +35,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.niki914.uikit.infra.component.settings.item.SettingHeaderRowLayout
@@ -104,7 +103,6 @@ fun SwipeDismissSettingsItemCard(
     var trailingActionBounds by remember { mutableStateOf<Rect?>(null) }
 
     val density = LocalDensity.current
-    val swipeDirection = if (LocalLayoutDirection.current == LayoutDirection.Rtl) -1f else 1f
     val thresholdPx = with(density) { threshold.toPx() }
     val dampingRangePx = with(density) { dampingRange.toPx() }
     val currentOnDismissRequest by rememberUpdatedState(onDismissRequest)
@@ -151,7 +149,7 @@ fun SwipeDismissSettingsItemCard(
             .background(backgroundColor, shape)
             .then(
                 if (enabled && swipeEnabled) {
-                    Modifier.pointerInput(thresholdPx, swipeDirection) {
+                    Modifier.pointerInput(thresholdPx) {
                         awaitEachGesture {
                             val down = awaitFirstDown(requireUnconsumed = false)
                             var pointerId = down.id
@@ -178,7 +176,7 @@ fun SwipeDismissSettingsItemCard(
                                     dragAxis = resolveDragAxis(overSlop.x, overSlop.y)
                                     if (dragAxis == DragAxis.Horizontal) {
                                         isDragging = true
-                                        rawDistancePx -= overSlop.x * swipeDirection
+                                        rawDistancePx -= overSlop.x
                                         change.consume()
                                     }
                                 }
@@ -198,7 +196,7 @@ fun SwipeDismissSettingsItemCard(
                                         if (deltaX != 0f) {
                                             change.consume()
                                         }
-                                        rawDistancePx -= deltaX * swipeDirection
+                                        rawDistancePx -= deltaX
                                     }
                                     if (dragCompleted) {
                                         finishHorizontalDrag()
@@ -219,12 +217,12 @@ fun SwipeDismissSettingsItemCard(
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onError,
             modifier = Modifier
-                .align(if (rawDistancePx < 0f) Alignment.CenterStart else Alignment.CenterEnd)
+                .align(if (rawDistancePx < 0f) AbsoluteAlignment.CenterLeft else AbsoluteAlignment.CenterRight)
                 .then(
                     if (rawDistancePx < 0f) {
-                        Modifier.padding(start = iconAnchor)
+                        Modifier.absolutePadding(left = iconAnchor)
                     } else {
-                        Modifier.padding(end = iconAnchor)
+                        Modifier.absolutePadding(right = iconAnchor)
                     },
                 )
                 .alpha(animatedProgress)
@@ -241,7 +239,7 @@ fun SwipeDismissSettingsItemCard(
             onTrailingActionClick = trailingAction,
             trailingActionBoundsInWindow = if (trailingAction != null) trailingActionBounds else null,
             modifier = Modifier
-                .offset { IntOffset(x = (-animatedDistancePx * swipeDirection).toInt(), y = 0) },
+                .absoluteOffset { IntOffset(x = -animatedDistancePx.toInt(), y = 0) },
         ) {
             SettingHeaderRowLayout(
                 leadingSlot = effectiveLeadingSlot,
