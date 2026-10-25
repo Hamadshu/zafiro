@@ -31,7 +31,6 @@ import com.mikepenz.markdown.model.rememberMarkdownState
 import com.niki914.uikit.base.BaseTheme
 import com.niki914.zafiro.app.ui.chat.composable.body.custom.AssistantCodeBlock
 import com.niki914.zafiro.app.ui.content.AssistantMarkdownTable
-import com.niki914.zafiro.app.ui.text.resolveContentTextAlign
 import com.niki914.zafiro.app.ui.text.resolveContentTextDirection
 
 val LocalMarkdownScale = compositionLocalOf { 1.0f }
@@ -74,7 +73,7 @@ fun AssistantOutputText(
 ) {
     val markdownState = rememberMarkdownState(content = text, retainState = true)
     val direction = remember(text) { resolveContentTextDirection(text, ignoreCode = true) }
-    val textAlign = resolveContentTextAlign(direction)
+    val textAlign = TextAlign.Start
     val layoutDirection = if (direction == TextDirection.Rtl) {
         LayoutDirection.Rtl
     } else {

@@ -7,15 +7,18 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.niki914.zafiro.app.R
-import com.niki914.zafiro.app.ui.text.resolveContentTextAlign
 import com.niki914.zafiro.app.ui.text.resolveContentTextDirection
 import com.niki914.zafiro.app.ui.chat.helper.CopyBtnGap
 import com.niki914.zafiro.app.ui.chat.helper.MiniCopyButton
@@ -37,15 +40,22 @@ internal fun SimpleStatusBody(
     if (ui.isRunning) {
         val running = stringResource(R.string.ui_tool_status_running)
         val direction = resolveContentTextDirection(running)
-        Text(
-            text = running,
-            style = MaterialTheme.typography.bodySmall.copy(
-                textDirection = direction,
-                textAlign = resolveContentTextAlign(direction),
-            ),
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = modifier,
-        )
+        val textLayoutDirection = if (direction == TextDirection.Rtl) {
+            LayoutDirection.Rtl
+        } else {
+            LayoutDirection.Ltr
+        }
+        CompositionLocalProvider(LocalLayoutDirection provides textLayoutDirection) {
+            Text(
+                text = running,
+                style = MaterialTheme.typography.bodySmall.copy(
+                    textDirection = direction,
+                    textAlign = TextAlign.Start,
+                ),
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = modifier,
+            )
+        }
         return
     }
 
@@ -70,32 +80,43 @@ internal fun SimpleStatusBody(
     } else {
         resolveContentTextDirection(text)
     }
+    val textLayoutDirection = if (direction == TextDirection.Rtl) {
+        LayoutDirection.Rtl
+    } else {
+        LayoutDirection.Ltr
+    }
 
     Box(modifier = modifier.fillMaxWidth()) {
-        SelectionContainer {
-            Text(
-                text = text,
-                style = if (hasCopyableReason) {
-                    MaterialTheme.typography.bodySmall.copy(
-                        fontFamily = FontFamily.Monospace,
-                        textDirection = direction,
-                        textAlign = resolveContentTextAlign(direction),
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = if (hasCopyableReason) OutputBtnInset else 0.dp),
+        ) {
+            CompositionLocalProvider(LocalLayoutDirection provides textLayoutDirection) {
+                SelectionContainer {
+                    Text(
+                        text = text,
+                        style = if (hasCopyableReason) {
+                            MaterialTheme.typography.bodySmall.copy(
+                                fontFamily = FontFamily.Monospace,
+                                textDirection = direction,
+                                textAlign = TextAlign.Start,
+                            )
+                        } else {
+                            MaterialTheme.typography.bodySmall.copy(
+                                textDirection = direction,
+                                textAlign = TextAlign.Start,
+                            )
+                        },
+                        color = if (ui.isFailed) {
+                            MaterialTheme.colorScheme.error
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
+                        modifier = Modifier.fillMaxWidth(),
                     )
-                } else {
-                    MaterialTheme.typography.bodySmall.copy(
-                        textDirection = direction,
-                        textAlign = resolveContentTextAlign(direction),
-                    )
-                },
-                color = if (ui.isFailed) {
-                    MaterialTheme.colorScheme.error
-                } else {
-                    MaterialTheme.colorScheme.onSurfaceVariant
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = if (hasCopyableReason) OutputBtnInset else 0.dp),
-            )
+                }
+            }
         }
 
         if (hasCopyableReason) {

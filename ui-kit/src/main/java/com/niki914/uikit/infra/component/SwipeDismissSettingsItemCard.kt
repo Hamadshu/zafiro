@@ -34,7 +34,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.niki914.uikit.infra.component.settings.item.SettingHeaderRowLayout
@@ -102,6 +104,7 @@ fun SwipeDismissSettingsItemCard(
     var trailingActionBounds by remember { mutableStateOf<Rect?>(null) }
 
     val density = LocalDensity.current
+    val swipeDirection = if (LocalLayoutDirection.current == LayoutDirection.Rtl) -1f else 1f
     val thresholdPx = with(density) { threshold.toPx() }
     val dampingRangePx = with(density) { dampingRange.toPx() }
     val currentOnDismissRequest by rememberUpdatedState(onDismissRequest)
@@ -148,7 +151,7 @@ fun SwipeDismissSettingsItemCard(
             .background(backgroundColor, shape)
             .then(
                 if (enabled && swipeEnabled) {
-                    Modifier.pointerInput(thresholdPx) {
+                    Modifier.pointerInput(thresholdPx, swipeDirection) {
                         awaitEachGesture {
                             val down = awaitFirstDown(requireUnconsumed = false)
                             var pointerId = down.id
@@ -175,7 +178,7 @@ fun SwipeDismissSettingsItemCard(
                                     dragAxis = resolveDragAxis(overSlop.x, overSlop.y)
                                     if (dragAxis == DragAxis.Horizontal) {
                                         isDragging = true
-                                        rawDistancePx -= overSlop.x
+                                        rawDistancePx -= overSlop.x * swipeDirection
                                         change.consume()
                                     }
                                 }
@@ -195,7 +198,7 @@ fun SwipeDismissSettingsItemCard(
                                         if (deltaX != 0f) {
                                             change.consume()
                                         }
-                                        rawDistancePx -= deltaX
+                                        rawDistancePx -= deltaX * swipeDirection
                                     }
                                     if (dragCompleted) {
                                         finishHorizontalDrag()
@@ -238,7 +241,7 @@ fun SwipeDismissSettingsItemCard(
             onTrailingActionClick = trailingAction,
             trailingActionBoundsInWindow = if (trailingAction != null) trailingActionBounds else null,
             modifier = Modifier
-                .offset { IntOffset(x = -animatedDistancePx.toInt(), y = 0) },
+                .offset { IntOffset(x = (-animatedDistancePx * swipeDirection).toInt(), y = 0) },
         ) {
             SettingHeaderRowLayout(
                 leadingSlot = effectiveLeadingSlot,

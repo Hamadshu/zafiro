@@ -1,6 +1,5 @@
 package com.niki914.zafiro.app.ui.text
 
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
 
 private val FencedCodeBlock = Regex("(?s)```.*?```")
@@ -37,8 +36,4 @@ internal fun resolveContentTextDirection(
     } else {
         TextDirection.Ltr
     }
-}
-
-internal fun resolveContentTextAlign(direction: TextDirection): TextAlign {
-    return if (direction == TextDirection.Rtl) TextAlign.Right else TextAlign.Left
 }

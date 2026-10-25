@@ -8,6 +8,7 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,13 +21,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.Velocity
 import com.niki914.zafiro.app.ui.content.ResultScrollMaxHeight
 import com.niki914.zafiro.app.ui.content.rememberScrollFollowState
-import com.niki914.zafiro.app.ui.text.resolveContentTextAlign
 import com.niki914.zafiro.app.ui.text.resolveContentTextDirection
 
 // ── nested scroll: pass through user drag, block fling inertia ─────────────
@@ -57,7 +60,11 @@ internal fun ToolResultText(
     textDirection: TextDirection? = null,
 ) {
     val direction = textDirection ?: resolveContentTextDirection(text)
-    val textAlign = resolveContentTextAlign(direction)
+    val layoutDirection = if (direction == TextDirection.Rtl) {
+        LayoutDirection.Rtl
+    } else {
+        LayoutDirection.Ltr
+    }
     var overflow by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
     val shouldFollow by rememberScrollFollowState(
@@ -73,38 +80,40 @@ internal fun ToolResultText(
         }
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(max = ResultScrollMaxHeight)
-            .let {
-                if (overflow) {
-                    it
-                        .nestedScroll(BlockFlingScrollPropagation)
-                        .verticalScroll(scrollState)
-                } else {
-                    it
-                }
-            },
-        contentAlignment = Alignment.TopStart,
-    ) {
-        SelectionContainer {
-            Text(
-                text = text,
-                style = style.copy(
-                    textDirection = direction,
-                    textAlign = textAlign,
-                ),
-                color = color,
-                maxLines = if (overflow) Int.MAX_VALUE else 1,
-                overflow = TextOverflow.Ellipsis,
-                softWrap = overflow,
-                onTextLayout = { layoutResult ->
-                    if (!overflow && layoutResult.hasVisualOverflow) {
-                        overflow = true
+    CompositionLocalProvider(LocalLayoutDirection provides layoutDirection) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(max = ResultScrollMaxHeight)
+                .let {
+                    if (overflow) {
+                        it
+                            .nestedScroll(BlockFlingScrollPropagation)
+                            .verticalScroll(scrollState)
+                    } else {
+                        it
                     }
                 },
-            )
+            contentAlignment = Alignment.TopStart,
+        ) {
+            SelectionContainer {
+                Text(
+                    text = text,
+                    style = style.copy(
+                        textDirection = direction,
+                        textAlign = TextAlign.Start,
+                    ),
+                    color = color,
+                    maxLines = if (overflow) Int.MAX_VALUE else 1,
+                    overflow = TextOverflow.Ellipsis,
+                    softWrap = overflow,
+                    onTextLayout = { layoutResult ->
+                        if (!overflow && layoutResult.hasVisualOverflow) {
+                            overflow = true
+                        }
+                    },
+                )
+            }
         }
     }
 }

@@ -2,7 +2,6 @@ package com.niki914.zafiro.app.ui.chat.composable.body.custom
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,18 +23,16 @@ internal fun ErrorDetailBody(
     if (ui.body.isNullOrEmpty()) return
 
     Box(modifier = modifier.fillMaxWidth()) {
-        SelectionContainer {
-            ToolResultText(
-                text = ui.body,
-                style = if (ui.isMonospace) {
-                    MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Monospace)
-                } else {
-                    MaterialTheme.typography.bodySmall
-                },
-                color = MaterialTheme.colorScheme.onTertiaryContainer,
-                textDirection = if (ui.isMonospace) TextDirection.Ltr else null,
-            )
-        }
+        ToolResultText(
+            text = ui.body,
+            style = if (ui.isMonospace) {
+                MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Monospace)
+            } else {
+                MaterialTheme.typography.bodySmall
+            },
+            color = MaterialTheme.colorScheme.onTertiaryContainer,
+            textDirection = if (ui.isMonospace) TextDirection.Ltr else null,
+        )
     }
 }
 
@@ -54,12 +51,10 @@ internal fun RetryingBody(
     )
     val text = if (ui.reason.isBlank()) count else "$count: ${ui.reason.trim()}"
     Box(modifier = modifier.fillMaxWidth()) {
-        SelectionContainer {
-            ToolResultText(
-                text = text,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onTertiaryContainer,
-            )
-        }
+        ToolResultText(
+            text = text,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onTertiaryContainer,
+        )
     }
 }

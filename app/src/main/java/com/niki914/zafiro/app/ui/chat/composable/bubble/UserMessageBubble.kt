@@ -19,10 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.niki914.uikit.infra.shape.G2FieldShape
-import com.niki914.zafiro.app.ui.text.resolveContentTextAlign
 import com.niki914.zafiro.app.ui.text.resolveContentTextDirection
 
 /** User 气泡在连续用户消息组内的位置（渲染层分组：组边界 = 相邻 UserBubble 之间存在任何内容，见 userBubblePosition）。 */
@@ -87,6 +88,11 @@ fun UserMessageBubble(
     val hasTail = position == UserBubblePosition.Single || position == UserBubblePosition.GroupLast
 
     val direction = resolveContentTextDirection(text)
+    val textLayoutDirection = if (direction == TextDirection.Rtl) {
+        LayoutDirection.Rtl
+    } else {
+        LayoutDirection.Ltr
+    }
 
     BoxWithConstraints(
         modifier = modifier.fillMaxWidth(),
@@ -102,15 +108,17 @@ fun UserMessageBubble(
                     .padding(horizontal = 18.dp, vertical = 12.dp),
                 contentAlignment = AbsoluteAlignment.CenterRight,
             ) {
-                SelectionContainer {
-                    Text(
-                        text = text,
-                        style = MaterialTheme.typography.bodyLarge.copy(
-                            textDirection = direction,
-                            textAlign = resolveContentTextAlign(direction),
-                        ),
-                        color = colorScheme.onSurface,
-                    )
+                CompositionLocalProvider(LocalLayoutDirection provides textLayoutDirection) {
+                    SelectionContainer {
+                        Text(
+                            text = text,
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                textDirection = direction,
+                                textAlign = TextAlign.Start,
+                            ),
+                            color = colorScheme.onSurface,
+                        )
+                    }
                 }
             }
         }
